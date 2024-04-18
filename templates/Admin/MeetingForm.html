@@ -1,0 +1,92 @@
+{% extends 'admin/index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block Title %}
+    Metting Form
+    {% endblock Title %}
+    {% block ContentPage %}
+     <!-- Begin Page Content -->
+      <!-- Page Heading -->
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Metting Form</h1>
+        <a href="/admin/Meeting/List/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-angle-left fa-sm text-white-50"></i> Back</a>
+      </div>
+
+      <form action="/admin/Meeting/Add/" id="formCategory" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if msg != null %}
+        {% if status == 'Success' %}
+          <div class="alert alert-success">
+            {{msg}}
+          </div>
+        {% else %}
+          <div class="alert alert-danger">
+            {{msg}}
+          </div>
+        {% endif %}
+     
+      {% endif %}
+        <div class="card shadow mb-4">
+          <div class="card-header">
+            <h5>Meeting Form</h5>
+          </div>
+          <div class="card-body">
+          <input type="hidden" name="hidId" id="hidId" value="{% if Data.0 != NULL %}{{Data.0}}{% else %}0{% endif %}">
+
+            <div class="form-group">
+              <b><label>Meeting Agenda</label></b>
+              <input value="{{Data.1}}"  required pattern="[A-Za-z\s]{1,50}" title="Please Enter Agenda in Alfabatic Character Between 1 to 50" name="meeting_agenda" type="text" id="meeting_agenda" class="form-control" placeholder="Metting Title" autocomplete="off" />
+            </div>
+            
+            <div class="form-group">
+                <b><label>Meeting Type</label></b>
+                <select name="meeting_type" id="meeting_type" class="form-control">
+                    <option {% if Data.3 == "Regular" %}selected="selected"{% endif %} value="Regular">Regular</option>
+                    <option {% if Data.3 == "Urgent" %}selected="selected"{% endif %} value="Urgent">Urgent</option>
+                </select>
+                
+            </div>
+            <div class="form-group">
+              <b><label>Discription</label></b>
+              <textarea required name="meeting_description" class="form-control" id="meeting_description">{{Data.2}}</textarea>              
+            </div>
+            <div class="form-group">
+                <b><label>Meeting Date</label></b>
+                <input value="{{Data.4}}" required name="meeting_date" type="date" id="meeting_date" class="form-control" autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <b><label>Meeting Time</label></b>
+                <input value="{{Data.5}}" required name="meeting_time" type="time" id="meeting_time" class="form-control" autocomplete="off" />
+            </div>
+            
+            <div class="form-group">
+                <b><label>Remarks</label></b>
+                <textarea required name="remarks" class="form-control" id="remarks">{{Data.6}}</textarea>              
+            </div>
+            <div class="form-group">
+              <b><label>Status</label></b>
+              <select required aria-required="true" name="status" id="status" class="form-control">
+                <option value="">--Select Status--</option>
+                <option {% if Data.7 == "Active" %}selected="selected"{% endif %} value="Active">Active</option>
+                <option {% if Data.7 == "Deactive" %}selected="selected"{% endif %} value="Deactive">Deactive</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card-footer text-center">
+            <button id="btnSave" name="btnSave" class="btn btn-success" type="submit"><i class="fa fa-save mr-2"></i>&nbsp;{% if Data.0 != 0 and Data.0 != null %}Update{% else %}Save{% endif %}</button>
+            <button id="btnCancle" name="btnCancle" class="btn btn-danger" type="reset"><i class="fa fa-times mr-2"></i>&nbsp;Clear</button>
+          </div>
+        </div>
+      </form>
+    {% endblock ContentPage %}
+</body>
+</html>

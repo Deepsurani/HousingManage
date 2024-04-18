@@ -1,0 +1,86 @@
+{% extends 'Admin/index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>{% block Title %} Member List {% endblock %}</title>
+    {% block HeadContent %}{% endblock HeadContent %}
+  </head>
+
+  <body>
+    {% block ContentPage %}
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Manage Member Account</h1>
+      <a
+        href="/admin/Member/Form/"
+        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i>&nbsp;create Account
+      </a>
+    </div>
+    <form action="/admin/ManageMemberAccounsave" mothod="post">
+      <div class="card">
+        <div class="card-header">Manage Member Account</div>
+          <div class="card-body table-responsive">
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                      <th scope="col">Member ID</th>
+                      <th scope="col">User</th>
+                      <th scope="col">Member Name</th>
+                      <th scope="col">Gender</th>
+                      <th scope="col">House</th>
+                      <th scope="col">In House Member</th>
+                      <th scope="col">Children Count</th>
+                      <th scope="col">adult count</th>
+                      <th scope="col">Business OR Job</th>
+                      <th scope="col">Business Job Title</th>
+                      <th scope="col">Business Job Address</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Edit</th>
+                      <th scope="col">Delete</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tbody>
+                      {% for item in List %}
+                      <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>Password - {{item.14}} <br>Email - {{item.15}}</td>
+                        <td>{{item.2}}</td>
+                        <td>{{item.3}}</td>
+                        <td>House No - {{item.16}}<br> Addrres - {{item.17}}</td>
+                        <td>{{item.5}}</td>
+                        <td>{{item.6}}</td>
+                        <td>{{item.7}}</td>
+                        <td>{{item.8}}</td>
+                        <td>{{item.9}}</td>
+                        <td>{{item.10}}</td>
+                        <td>{{item.12}}</td>
+                        <td>
+                          <a href="/admin/Member/Edit/{{item.0}}"><button type="button" class="btn btn-success">
+                            <i class="fas fa-edit"></i>&nbsp;Edit
+                          </button></a>
+                        </td>
+                        <td>
+                          <a onclick="return confirm('Are You Sure Want to Delete Data?')" href="/admin/Member/Delete/{{item.0}}"><button type="button" class="btn btn-danger">
+                            <i class="fas fa-trash"></i>&nbsp;Delete
+                          </button></a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+    </form>
+    {% endblock ContentPage %} 
+    {% block JavaScriptContent %}{% endblock JavaScriptContent %}
+  </body>
+</html>

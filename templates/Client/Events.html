@@ -1,0 +1,77 @@
+{% extends 'Client/index.html' %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Event List</title>
+    {% block HeadContent %}{% endblock HeadContent %}
+  </head>
+  <body>
+    {% block ContentPage %}
+
+    <!--Start breadcrumb area paroller-->     
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg" style="background-image: url({% static 'Client_assets/images/breadcrumb/breadcrumb-1.jpg' %});"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title">
+                       <h2>Events</h2>
+                    </div>
+                    <div class="breadcrumb-menu">
+                        <ul>
+                            <li><a href="/Home">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">Events</li>
+                        </ul>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+    
+    
+<!--Start Project Page One-->
+<section class="project-page-one">
+  <div class="container">
+      <div class="row text-right-rtl">
+          <!--Start project block-->
+          <div class="row wow fadeInUp">
+              {% for item in List %}
+              <div class="project-block col-sm-4">
+                <div class="img-holder">
+                    <div class="inner">
+                        <img src="{{item.2}}" alt="">
+                    </div>
+                </div>
+                <div class="text-holder">
+                    <h3><a href="#">{{item.1}}</a></h3>
+                    <p>{{item.7}}</p>
+                    <ul>
+                        <li><span>Description:</span>{{item.4}}</li>
+                        <li><span>Theme:</span>{{item.5}}</li>
+                        <li><span>Date and Time:</span>{{item.8}}</li>
+                    </ul>
+                </div>
+            </div>
+              {% endfor %}
+          </div>
+          <!--End project block-->
+      </div>
+  </div>
+</section>
+<!--End Project Page One-->
+
+
+    {% endblock ContentPage %} 
+    {% block JavaScriptContent %}{% endblock JavaScriptContent %}
+  </body>
+</html>

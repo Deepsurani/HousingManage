@@ -1,0 +1,102 @@
+{% extends 'admin/index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block Title %}
+    House
+    {% endblock %}
+    {% block ContentPage %}
+      <!-- Begin Page Content -->
+      <!-- Page Heading -->
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">House Form</h1>
+        <a href="/admin/House/List/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-angle-left fa-sm text-white-50"></i> Back</a>
+      </div>
+
+      <form action="/admin/House/Add/" id="formCategory" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if msg != null %}
+        {% if status == 'Success' %}
+          <div class="alert alert-success">
+            {{msg}}
+          </div>
+        {% else %}
+          <div class="alert alert-danger">
+            {{msg}}
+          </div>
+        {% endif %}
+     
+      {% endif %}
+        <div class="card shadow mb-4">
+          <div class="card-header">
+            <h5>House Form</h5>
+          </div>
+        
+          <div class="card-body">
+          <input type="hidden" name="hidId" id="hidId" value="{% if Data.0 != NULL %}{{Data.0}}{% else %}0{% endif %}">
+            
+            <div class="form-group">
+                <b><label>House Type</label></b>
+                <select required aria-required="true" name="house_type_id" id="house_type_id" class="form-control">
+                  <option value="">----   Select House Type  ----</option>
+                  {% for item in List %}
+                  <option {% if Data.2 == item.0 %}selected="selected"{% endif %} value="{{item.0}}">{{item.1}}</option>
+                  {% endfor %}
+
+                </select>
+            </div>
+            <div class="form-group">
+                <b><label>House Sub Type</label></b>
+                <select required aria-required="true" name="house_sub_typ" id="house_sub_typ" class="form-control">
+                    <option {% if Data.3 == "Ownership" %}selected="selected"{% endif %} value="Ownership">Ownership</option>
+                    <option {% if Data.3 == "On Rent" %}selected="selected"{% endif %} value="On Rent">On Rent</option>
+                </select>
+            </div>
+            <div class="form-group">
+              <b><label>House No</label></b>
+              <input value="{{Data.1}}" required name="house_no" type="number" id="house_no" class="form-control" placeholder="House No" autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <b><label>Building No</label></b>
+                <input value="{{Data.4}}" required name="building_no" type="number" id="building_no" class="form-control" placeholder="Building No" autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <b><label>Floor</label></b>
+                <input value="{{Data.5}}" required name="floor" type="number" id="floor" class="form-control" placeholder="Building Floor" autocomplete="off" />
+            </div>
+            <div class="form-group">
+              <b><label>Address</label></b>
+              <textarea required name="address" autocomplete="off" class="form-control" id="address">{{Data.6}}</textarea>
+            </div>
+            <div class="form-group">
+              <b><label>House Facility</label></b>
+              <textarea required name="house_facility" autocomplete="off" class="form-control" id="house_facility">{{Data.7}}</textarea>
+            </div>
+            
+            <div class="form-group">
+              <b><label>Status</label></b>
+              <select required aria-required="true" name="status" id="status" class="form-control">
+                <option value="">--Select Status--</option>
+                <option {% if Data.8 == "Active" %}selected="selected"{% endif %} value="Active">Active</option>
+                <option {% if Data.8 == "Deactive" %}selected="selected"{% endif %} value="Deactive">Deactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="card-footer text-center">
+            <button id="btnSave" name="btnSave" class="btn btn-success" type="submit"><i class="fa fa-save mr-2"></i>&nbsp;{% if Data.0 != 0 and Data.0 != null %}Update{% else %}Save{% endif %}</button>
+            <button id="btnCancle" name="btnCancle" class="btn btn-danger" type="reset"><i class="fa fa-times mr-2"></i>&nbsp;Clear</button>
+          </div>
+        </div>
+      </form>
+    {% endblock ContentPage %}
+
+    
+</body>
+</html>

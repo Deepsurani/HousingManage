@@ -1,0 +1,133 @@
+{% extends 'Admin/index.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>{% block Title %} Member Form {% endblock %}</title>
+    {% block HeadContent %}{% endblock HeadContent %}
+  </head>
+
+  <body>
+    {% block ContentPage %}
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Add Member Account</h1>
+      <a
+        href="/admin/Member/List/"
+        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-arrow-left fa-sm text-white-50"></i>&nbsp;Back
+      </a>
+    </div>
+    <form action="/admin/Member/Add/" method="post">
+      {% csrf_token %}
+
+      {% if msg != null %}
+          {% if status == 'Success' %}
+            <div class="alert alert-success">
+              {{msg}}
+            </div>
+          {% else %}
+            <div class="alert alert-danger">
+              {{msg}}
+            </div>
+          {% endif %}
+       
+        {% endif %}
+        <input type="hidden" name="hidId" id="hidId" value="{% if Data.0 != NULL %}{{Data.0}}{% else %}0{% endif %}">
+
+      <input type="hidden" name="user_id" id="user_id" value="{% if Data.1 != NULL %}{{Data.1}}{% else %}0{% endif %}">
+      <div class="card">
+        <div class="card-header">Add Member Account</div>
+        
+        <div class="card-body">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input required {% if Data.0 != NULL %}disabled{% endif %} type="email" id="email" name="email" class="form-control" placeholder="Enter Your Email" value="{{Data.15}}">
+          </div>
+          <div class="form-group">
+            <label for="mobile">Mobile</label>
+            <input required {% if Data.0 != NULL %}disabled{% endif %} type="number" id="mobile" name="mobile" class="form-control" placeholder="Enter Your Mobile" value="{{Data.13}}">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input required {% if Data.0 != NULL %}disabled{% endif %} type="text" id="password" name="password" class="form-control" placeholder="Password" value="{{Data.14}}">
+          </div>
+          <div class="form-group">
+            <label for="member_name">Member Name</label>
+            <input required pattern="[A-Za-z\s]{1,50}" title="Please Enter Name in Alfabatic Character." type="text" id="member_name" name="member_name" class="form-control" placeholder="Member Name" value="{{Data.2}}">
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select required="required" name="gender" class="form-control" id="gender">
+              <option value="">--select Gender--</option>
+              <option {% if Data.3 == "Male" %}selected="selected"{% endif %} value="Male" >Male</option>
+              <option {% if Data.3 == "Female" %}selected="selected"{% endif %}value="Female">Female</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="HId">House</label>
+            <select required="required" class="form-control" name="house_id" id="house_id">
+              <option value="">--- Select House ---</option>
+              {% for item in House %}
+              <option {% if Data.4 == item.0 %}selected="selected"{% endif %} value="{{item.0}}">House No - {{item.1}}, Building No - {{item.4}}, Floor - {{item.5}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="in_house_member">In House Member</label>
+            <input type="number" class="form-control" id="in_house_member" name="in_house_member" placeholder="Total Member" value="{{Data.5}}">
+          </div>
+          <div class="form-group">
+              <label for="children_count">Children Count</label>
+              <input type="number" class="form-control" id="children_count" name="children_count" placeholder="Children Count" value="{{Data.6}}">
+          </div>
+          <div class="form-group">
+              <label for="adult_count">Adult Count</label>
+              <input type="text" class="form-control" id="adult_count" name="adult_count" placeholder="Adult Count" value="{{Data.7}}">
+          </div>
+          <div class="form-group">
+            <label for="business_or_job">Profession</label>
+            <select required="required" name="business_or_job" class="form-control" id="business_or_job">
+              <option value="">--select Profession--</option>
+              <option {% if Data.8 == "Business" %}selected="selected"{% endif %} value="Business" >Business</option>
+              <option {% if Data.8 == "Job" %}selected="selected"{% endif %}value="Job">Job</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="business_job_title">Business Job Title</label>
+            <input type="text" class="form-control" id="business_job_title" name="business_job_title" placeholder="Business Job Title" value="{{Data.9}}">
+          </div>
+          <div class="form-group">
+            <label for="business_job_address">Business Job Address</label>
+            <input type="textarea" class="form-control" id="business_job_address" name="business_job_address" placeholder="Business Job Address" value="{{Data.10}}">
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select required="required" name="status" class="form-control" id="status">
+              <option value="">--select Status--</option>
+              <option {% if Data.12 == "Active" %}selected="selected"{% endif %} value="Active" >Active</option>
+              <option {% if Data.12 == "Deactive" %}selected="selected"{% endif %}value="Deactive">Deactive</option>
+            </select>
+          </div>
+          
+          <div class="card-footer text-center">
+            <button type="submit" class="btn btn-success" id="btn1" name="btn1">
+              <i class="fas fa-save"></i>&nbsp;{% if Data.0 != 0 and Data.0 != null %}Update{% else %}Create Now{% endif %}</button>
+            <button type="reset" class="btn btn-danger">
+              <i class="fas fa-times"></i>&nbsp;Clear</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    {% endblock ContentPage %}
+    {% block JavaScriptContent %}
+    {% endblock JavaScriptContent %}
+  </body>
+</html>

@@ -1,0 +1,72 @@
+{% extends 'admin/index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    {% block Title %}
+    House Type
+    {% endblock %}
+    {% block ContentPage %}
+      <!-- Begin Page Content -->
+      <!-- Page Heading -->
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">House Type</h1>
+        <a href="/admin/HouseType/List/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-angle-left fa-sm text-white-50"></i> Back</a>
+      </div>
+
+      <form action="/admin/HouseType/Add/" id="formCategory" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if msg != null %}
+          {% if status == 'Success' %}
+            <div class="alert alert-success">
+              {{msg}}
+            </div>
+          {% else %}
+            <div class="alert alert-danger">
+              {{msg}}
+            </div>
+          {% endif %}
+       
+        {% endif %}
+        <div class="card shadow mb-4">
+          <div class="card-header">
+            <h5>Form House Type</h5>
+          </div>
+          <div class="card-body">
+            <input type="hidden" name="hidId" id="hidId" value="{% if Data.0 != NULL %}{{Data.0}}{% else %}0{% endif %}">
+            <div class="form-group">
+              <b><label>House Type Name</label></b>
+              <input value="{{Data.1}}" required pattern="[A-Za-z\s]{1,50}" title="Please Enter House Type Name in Alfabatic Character Between 1 to 50" name="txtHouseType" type="text" id="txtHouseType" class="form-control" placeholder="House Type" autocomplete="off" />
+            </div>
+            <div class="form-group">
+              <b><label>Status</label></b>
+              <select required aria-required="true" name="dropStatus" id="dropStatus" class="form-control">
+                <option value="">--Select Status--</option>
+                <option {% if Data.2 == "Active" %}selected="selected"{% endif %} value="Active">Active</option>
+                <option {% if Data.2 == "Deactive" %}selected="selected"{% endif %} value="Deactive">Deactive</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card-footer text-center">
+            <button id="btnSave" name="btnSave" class="btn btn-success" type="submit"><i class="fa fa-save mr-2"></i>&nbsp;{% if Data.0 != 0 and Data.0 != null %}Update{% else %}Save{% endif %}</button>
+            <button id="btnCancle" name="btnCancle" class="btn btn-danger" type="reset"><i class="fa fa-times mr-2"></i>&nbsp;Clear</button>
+          </div>
+        </div>
+
+       
+      </form>
+    {% endblock %}
+
+    {% block Scripts %}
+   
+   
+    {% endblock %}
+  </body>
+</html>

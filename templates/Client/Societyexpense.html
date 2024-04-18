@@ -1,0 +1,91 @@
+{% extends 'Client/index.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Event List</title>
+    {% block HeadContent %}{% endblock HeadContent %}
+  </head>
+  <body>
+    {% block ContentPage %}
+
+    <!--Start breadcrumb area paroller-->     
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg" style="background-image: url({% static 'Client_assets/images/breadcrumb/breadcrumb-1.jpg' %});"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title">
+                       <h2>Society Expense</h2>
+                    </div>
+                    <div class="breadcrumb-menu">
+                        <ul>
+                            <li><a href="/Home">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">Society Expense</li>
+                        </ul>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+
+<!--Start Fact Counter Area-->
+<section class="fact-counter-area fact-counter-elements-block1">
+    <div class="pattern-bg" style="background-image: url({% static 'Client_assets/images/pattern/thm-pattern-1.png' %});"></div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xl-6 text-right-rtl">
+                <div class="about-style1__content">
+                    <div class="sec-title">
+                        <div class="sub-title">
+                            <p>Award Achive</p>
+                        </div>
+                        <h2>Our Biggest Award<br> is Develop Thriving<br> Communities.</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6">
+                <div class="faq-style2__content text-left-ltr">
+                    <div class="inner-content">
+                        {% for item in List %}
+                        <ul class="accordion-box">
+                            <li class="accordion block wow slideInUp" data-wow-delay="100ms" data-wow-duration="1500ms">
+                                <div class="acc-btn">
+                                    <div class="icon-outer"><i class="flaticon-down-arrow-2"></i></div>
+                                    <h3>{{item.8}}</h3>
+                                    <p><strong>Amount </strong>{{item.4}} <strong>₹</strong></p>
+
+                                </div>
+                                <div class="acc-content">
+                                    <p>{{item.6}}</p>
+                                    <br>
+                                    <p><strong>Expence Form :</strong> {{item.3}} </p>
+                                    <p><strong>Date Time : </strong> {{item.7}} </p>
+                                </div>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>   
+<!--End Fact Counter Area-->
+
+    {% endblock ContentPage %} 
+    {% block JavaScriptContent %}{% endblock JavaScriptContent %}
+  </body>
+</html>

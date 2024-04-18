@@ -1,0 +1,189 @@
+{% extends 'Client/index.html' %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Event List</title>
+    {% block HeadContent %}{% endblock HeadContent %}
+  </head>
+
+  <body>
+    {% block ContentPage %}
+    <!--Start breadcrumb area paroller-->     
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg" style="background-image: url({% static 'client_assets/images/breadcrumb/breadcrumb-1.jpg' %});"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title">
+                       <h2>Contact Us</h2>
+                    </div>
+                    <div class="breadcrumb-menu">
+                        <ul>
+                            <li><a href="/Home">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">Contact Us</li>
+                        </ul>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+
+
+
+<!--Start Contact Info Area-->     
+<section class="contact-info-area">
+    <div class="shape1 wow slideInRight" data-wow-delay="400ms" data-wow-duration="6500ms">
+        <img src="{% static 'client_assets/images/shape/shape-round-5.png' %}" alt="">
+    </div>
+    <div class="container">
+        <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>Information</p>
+            </div>
+            <h2>Visit our Website or<br> Contact Us</h2>
+        </div>
+        <div class="row justify-content-around">
+            <!--Start Single Contact Info Box-->
+            {% comment %} <div class="col-xl-4 col-lg-4">
+                <div class="single-contact-info-box">
+                    <div class="icon">
+                        <span class="flaticon-location-pin"></span>
+                    </div>
+                    <div class="text">
+                        <h4>Office Location</h4>
+                        <p>629 12th St, Modesto, CA 95354 <br>INDIA</p>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+            <!--End Single Contact Info Box-->
+            <!--Start Single Contact Info Box-->
+            <div class="col-xl-4 col-lg-4 ">
+                <div class="single-contact-info-box">
+                    <div class="icon">
+                        <span class="flaticon-email-1"></span>
+                    </div>
+                    <div class="text">
+                        <h4>Company Email</h4>
+                        <p class="text1"><a href="mailto:yourmail@email.com">Hosingsociety2023@gmail.com</a></p>
+                        
+                    </div>
+                </div>
+            </div>
+            <!--End Single Contact Info Box-->
+            <!--Start Single Contact Info Box-->
+            <div class="col-xl-4 col-lg-4">
+                <div class="single-contact-info-box">
+                    <div class="icon">
+                        <span class="flaticon-phone-call-3"></span>
+                    </div>
+                    <div class="text">
+                        <h4>Contact Us</h4>
+                        {% comment %} <p class="text1"><a href="tel:123456789">+(91)7623864513</a></p> {% endcomment %}
+                        <p class="text2"><a href="tel:123456789">+(91)7623864513</a></p>
+                    </div>
+                </div>
+            </div>
+            <!--End Single Contact Info Box-->
+        </div>
+    </div>
+</section>
+<!--End Contact Info Area-->     
+
+
+
+{% comment %} <!--Start Main Contact Form Area-->
+<section class="main-contact-form-area">
+    <div class="container">
+        <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>Information</p>
+            </div>
+            <h2>Leave a Comment</h2>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="contact-style1_form">
+                    <div class="contact-form">
+                        <form id="contact-form" name="contact_form" class="default-form2" action="https://mehedi.asiandevelopers.com/hoppex/assets/inc/sendmail.php" method="post">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6">
+                                    <div class="input-box"> 
+                                        <input type="text" name="form_name" value="" placeholder="Full Name :" required="">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6">
+                                    <div class="input-box"> 
+                                        <input type="email" name="form_email" value="" placeholder="Email :" required="">
+                                    </div>    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6">
+                                    <div class="input-box">
+                                        <input type="text" name="form_phone" value="" placeholder="Phone :">
+                                    </div>   
+                                </div>
+                                <div class="col-xl-6 col-lg-6">
+                                    <div class="input-box">
+                                        <input type="text" name="form_subject" value="" placeholder="Subject :">
+                                    </div>   
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 text-center">
+                                    <div class="input-box two">
+                                        <textarea name="form_message" placeholder="Enter your message..." required=""></textarea>
+                                    </div>
+                                    <div class="button-box">
+                                        <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+                                        <button class="btn-one" type="submit" data-loading-text="Please wait...">
+                                            <span class="txt">Submit Now</span>
+                                        </button> 
+                                    </div>     
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Main Contact Form Area--> {% endcomment %}
+
+<!--Start Google map area-->
+<section class="google-map-area">
+    <div class="container-fluid">
+        <div class="contact-page-map-outer">
+            <!--Map Canvas-->
+            <div class="map-canvas"
+                data-zoom="12"
+                data-lat="-37.817085"
+                data-lng="144.955631"
+                data-type="roadmap"
+                data-hue="#ffc400"
+                data-title="Envato"
+                data-icon-path="{% static 'Client_assets/images/icon/map-marker.png' %}"
+                data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
+            </div>
+        </div>
+    </div>
+</section>
+<!--Start Google map area-->
+
+
+
+    {% endblock ContentPage %} 
+    {% block JavaScriptContent %}{% endblock JavaScriptContent %}
+  </body>
+</html>

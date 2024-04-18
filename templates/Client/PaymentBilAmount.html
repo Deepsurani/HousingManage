@@ -1,0 +1,77 @@
+{% extends 'Client/index.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Event List</title>
+    {% block HeadContent %}{% endblock HeadContent %}
+  </head>
+  <body>
+    {% block ContentPage %}
+
+    <!--Start breadcrumb area paroller-->     
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg" style="background-image: url({% static 'Client_assets/images/breadcrumb/breadcrumb-1.jpg' %});"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title">
+                       <h2>Payment Bills Amount</h2>
+                    </div>
+                    <div class="breadcrumb-menu">
+                        <ul>
+                            <li><a href="/Home">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">Payment Bills Amount</li>
+                        </ul>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+<div class="container">
+<div class="card-body table-responsive mt-lg-5 mb-lg-5 me-5 ms-5">
+    <table class="table table-bordered text-center "style="cursor: not-allowed;">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Expance Type Id</th>
+                <th>Expance From Id</th>
+                <th>Expance Amount</th>
+                <th>Remarks</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for item in List %}
+            <tr>
+                <td>{{item.1}}</td>
+                <td>{{item.8}}</td>
+                <td>{{item.3}}</td>
+                <td>{{item.4}}</td>
+                <td>{{item.6}}</td>
+                <td>{{item.7}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+  </div>
+</div>
+<!--Start Fact Counter Area-->
+
+<!--End Fact Counter Area-->
+
+    {% endblock ContentPage %} 
+    {% block JavaScriptContent %}{% endblock JavaScriptContent %}
+  </body>
+</html>

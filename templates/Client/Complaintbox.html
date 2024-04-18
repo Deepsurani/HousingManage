@@ -1,0 +1,181 @@
+{% extends 'Client/index.html' %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Event List</title>
+    {% block HeadContent %}{% endblock HeadContent %}
+  </head>
+
+  <body>
+    {% block ContentPage %}
+
+    <!--Start breadcrumb area paroller--> 
+        
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg" style="background-image: url({% static 'Client_assets/images/breadcrumb/breadcrumb-1.jpg' %});"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title">
+                       <h2>Complaint Box</h2>
+                    </div>
+                    <div class="breadcrumb-menu">
+                        <ul>
+                            <li><a href="/Home">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">Complaint Box</li>
+                        </ul>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+
+<!--Start Testimonials Style1 area -->
+<section class="testimonials-style1-area testimonials-elements-block2">
+    <div class="container">
+        {% comment %} <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>Suggestions</p>
+            </div>
+            <h2>What Our Society Member<br> Suggest About Society. </h2>
+        </div> {% endcomment %}
+        <div class="row text-right-rtl">
+            <!--Start Single Testimonials Style1-->
+            {% comment %} <div class="row ">
+                {% for item in List %}
+                <div class ="col-6">
+                    <div class="single-testimonials-style1">
+                        <div class="client-info">
+                            <div class="title-box">
+                                <h3> {{item.2}} </h3>
+                            <span> <strong>Member name : </strong>{{item.7}} </span>
+                            </div>
+                        </div>
+                        <div class="text">
+                            <p><strong>Description :</strong> {{item.3}} .</p>
+                            <div class="date-box"> <p><strong>Remarks : </strong> {{item.4}} </p></div>
+                        </div>
+                    </div>
+                </div>
+                
+                {% endfor %}
+            </div> {% endcomment %}
+            <!--End Single Testimonials Style1-->
+        </div>
+    </div>
+</section>
+<!--End Testimonials Style1 area -->
+
+<!--Start Main Contact Form Area-->
+
+
+<section class="main-contact-form-area">
+    <div class="container">
+        <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>Suggestion</p>
+            </div>
+            <h2>Leave a Complaint</h2>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="contact-style1_form">
+                    <div class="contact-form">
+                    <form action="{% url 'ComplaintboxAdd' %}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if msg != null %}
+                        {% if status == 'Success' %}
+                            <div class="alert alert-success">
+                            {{msg}}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-danger">
+                            {{msg}}
+                            </div>
+                        {% endif %}
+                
+                    {% endif %}
+                    
+                        <form id="contact-form" name="contact_form" class="default-form2" action="https://mehedi.asiandevelopers.com/hoppex/assets/inc/sendmail.php" method="post">
+                            <div class="row">
+                            <input type="hidden" name="hidId" id="hidId" value="{% if Data.0 != NULL %}{{Data.0}}{% else %}0{% endif %}">
+                                <div class="col-xl-6 col-lg-6">
+                                    <div class="input-box"> 
+                                        <input type="text" name="user_id" value="" placeholder="Name :" required="">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6">
+                                    <div class="input-box"> 
+                                        <input type="email" name="form_email" value="{{Data.1}}" placeholder="Email :" required="">
+                                    </div>    
+                                </div>
+
+                                    <div class="input-box"> 
+                                        <input type="hidden" name="remarks" value="{{0}}" placeholder="Email :" required="">
+                                    </div>
+
+                                    <div class="input-box"> 
+                                        <input type="hidden" name="status" value="{{0}}" placeholder="Email :" required="">
+                                    </div>
+                                    
+                            </div>
+                            <div class="row">
+                                {% comment %} <div class="col-xl-6 col-lg-6">
+                                    <div class="input-box">
+                                        <input type="text" name="form_phone" value="" placeholder="Phone :">
+                                    </div>   
+                                </div> {% endcomment %}
+                                <div class="col-xl-6 col-lg-6 mb-4">
+                                    <div class="input-box">
+                                        <select name="suggestion_type" id="suggestion_type" class="w-100">
+                                            <option>select</option>
+                                            <option {% if Data.2 == "Society" %}selected="selected"{% endif %} value="Society">Society</option>
+                                            <option {% if Data.2 == "Noticeboard" %}selected="selected"{% endif %} value="Noticeboard">Noticeboard</option>
+                                            <option {% if Data.2 == "Sport Club" %}selected="selected"{% endif %} value="Sport Club">Sport Club</option>
+                                            <option {% if Data.2 == "Playground" %}selected="selected"{% endif %} value="Playground">Playground</option>
+                                            <option {% if Data.2 == "Garden" %}selected="selected"{% endif %} value="Garden">Garden</option>
+                                            <option {% if Data.2 == "Buildings" %}selected="selected"{% endif %} value="Buildings">Buildings</option>
+                                            <option {% if Data.2 == "Compound" %}selected="selected"{% endif %} value="Compound">Compound</option>
+                                        </select>
+                                    </div>   
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 text-center mb-5">
+                                    <div class="input-box two">
+                                        <textarea name="suggestion_description" placeholder="Enter your message..." required=""></textarea>
+                                    </div>
+                                    <div class="button-box">
+                                        <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+                                        <button class="btn-one" type="submit">
+                                            <span class="txt">Submit Now</span>
+                                        </button> 
+                                    </div>     
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--End Main Contact Form Area-->
+
+
+    {% endblock ContentPage %} 
+    {% block JavaScriptContent %}{% endblock JavaScriptContent %}
+  </body>
+</html>

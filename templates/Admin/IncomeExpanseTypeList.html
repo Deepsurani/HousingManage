@@ -1,0 +1,57 @@
+{% extends 'admin/index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block Title %}
+    Income Expence Type
+    {% endblock Title %}
+
+    {% block ContentPage %}
+         <!-- Begin Page Content -->
+      <!-- Page Heading -->
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Income Expence Type List</h1>
+        <a href="/admin/IncomeExpanseType/Form/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add</a>
+      </div>
+
+        <div class="card shadow mb-4">
+          <div class="card-header">
+            <h5>Income Expence Type</h5>
+          </div>
+          <div class="card-body table-responsive">
+            <table class="table table-hover table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th style="width: 150px;">Edit</th>
+                        <th style="width: 150px;">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for item in List %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{item.1}}</td>
+                        <td>{{item.2}}</td>
+                        <td style="width: 150px;"><a href="/admin/IncomeExpanseTypeEdit/Edit/{{item.0}}" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a></td>
+                        <td style="width: 150px;"><a onclick="return confirm('Are You Sure Want to Delete Data?')" href="/admin/IncomeExpanseTypeDelete/Delete/{{item.0}}" class="btn btn-danger"><i class="fa fa-trash"></i>Delete</a></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </div>
+    {% endblock ContentPage %}
+
+    
+</body>
+</html>

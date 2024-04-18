@@ -1,0 +1,362 @@
+{% extends 'Client/index.html' %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Event List</title>
+    {% block HeadContent %}{% endblock HeadContent %}
+  </head>
+
+  <body>
+    {% block ContentPage %}
+    <section class="main-slider style1">
+      <div class="slider-box">
+          <!-- Banner Carousel -->
+          <div class="banner-carousel owl-theme owl-carousel">
+              <!-- Slide -->
+              <div class="slide">
+                  <div class="slide-shape1">
+                      <img class="float-bob-x" src="{% static 'Client_assets/images/slides/slide-shape-1.png' %}" alt="">
+                  </div>
+                  <div class="slide-shape2">
+                      <img src="{% static 'Client_assets/images/shape/hand-1.png' %}" alt="">
+                  </div>
+                  <div class="slide-shape3">
+                      <img class="float-bob-y" src="{% static 'Client_assets/images/shape/hand-2.png' %}" alt="">
+                  </div>
+                  <div class="slide-shape4">
+                      <img class="zoom-fade" src="{% static 'Client_assets/images/shape/slide-shape-2.png' %}" alt="">
+                  </div>
+                  <div class="auto-container">
+                      <div class="content">
+                          <div class="big-title">
+                              <h2>We’ll Make Our<br>Society Best<br> with Love.</h2>
+                          </div>
+                          <div class="text">
+                              {% comment %} <p>Amet consectetur adipisicing elit sed do.</p> {% endcomment %}
+                          </div>
+                          <div class="btns-box">
+                              <a class="btn-one" href="/Home">
+                                  <span class="txt">View Projects</span>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Slide -->
+              <div class="slide">
+                  <div class="slide-shape1">
+                      <img class="float-bob-x" src="{% static 'Client_assets/images/slides/slide-shape-2.png' %}" alt="">
+                  </div>
+                  <div class="slide-shape3">
+                      <img class="float-bob-y" src="{% static 'Client_assets/images/shape/hand-2.png' %}" alt="">
+                  </div>
+                  <div class="slide-shape4">
+                      <img class="zoom-fade" src="{% static 'Client_assets/images/shape/slide-shape-2.png' %}" alt="">
+                  </div>
+                  <div class="auto-container">
+                      <div class="content">
+                          <div class="big-title">
+                              <h2>Manage The<br> Society And Change <br> The Life.</h2>
+                          </div>
+                          <div class="text">
+                              {% comment %} <p>Amet consectetur adipisicing elit sed do.</p> {% endcomment %}
+                          </div>
+                          <div class="btns-box">
+                              <a class="btn-one" href="/Contact">
+                                  <span class="txt">Contact Us</span>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </section>
+
+  <!--Start Project Style1 Area-->
+  <section class="project-style1-area">
+      <div class="container">
+          <div class="row text-right-rtl">
+
+                <div class="col-xl-12 col-lg-12">
+                    <div class="project-top-title">
+                        <div class="sec-title">
+                            <div class="sub-title">
+                                <p>Our Events</p>
+                            </div>
+                            <h2>Recent Events</h2>
+                        </div>
+                    </div>
+                </div>
+
+                {% for item in List %}
+                <div class="col-xl-6 col-lg-6">
+                    
+                    <!--Start Single project Item-->
+                    
+                    <div class="single-project-item"> 
+                        <div class="img-holder">
+                            <div class="inner">
+
+                                <img src="{{item.2}}" alt="Awesome Image">
+                                <div class="zoom-button">
+
+                                    <a class="lightbox-image" data-fancybox="gallery"
+                                      href="{{item.2}}">
+                                      <i class="flaticon-plus"></i>
+                                    </a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="text-holder">
+                            <h4><a href="#">Recent Events</a></h4>
+                            <div class="category">
+                                <div class="border-box"></div>
+                                <p>Photos</p>
+                            </div>
+                        </div>
+                    </div>
+                  
+                  <!--End Single project Item-->
+              </div>
+              {% endfor %} 
+
+              {% comment %} <div class="col-xl-6 col-lg-6">
+                  <!--Start Single project Item-->
+                  <div class="single-project-item">
+                      <div class="img-holder">
+                          <div class="inner">
+                              <img src="{% static 'Client_assets/images/portfolio/project-v1-2.jpg' %}" alt="Awesome Image">
+                              <div class="zoom-button">
+                                  <a class="lightbox-image" data-fancybox="gallery"
+                                      href="{% static 'Client_assets/images/portfolio/project-v1-2.jpg' %}">
+                                      <i class="flaticon-plus"></i>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="text-holder">
+                          <h4><a href="#">Modern and sunny apartment</a></h4>
+                          <div class="category">
+                              <div class="border-box"></div>
+                              <p>Apartment</p>
+                          </div>
+                      </div>
+                  </div>
+                  <!--End Single project Item-->
+              </div> {% endcomment %}
+
+              {% comment %} <div class="col-xl-6 col-lg-6">
+                  <!--Start Single project Item-->
+                  <div class="single-project-item">
+                      <div class="img-holder">
+                          <div class="inner">
+                              <img src="{% static 'Client_assets/images/portfolio/project-v1-3.jpg' %}" alt="Awesome Image">
+                              <div class="zoom-button">
+                                  <a class="lightbox-image" data-fancybox="gallery"
+                                      href="{% static 'Client_assets/images/portfolio/project-v1-3.jpg' %}">
+                                      <i class="flaticon-plus"></i>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="text-holder">
+                          <h4><a href="#">Luxury apartment in The Quay</a></h4>
+                          <div class="category">
+                              <div class="border-box"></div>
+                              <p>Villa</p>
+                          </div>
+                      </div>
+                  </div>
+                  <!--End Single project Item-->
+              </div>
+{% endcomment %}
+              <div class="col-xl-12 col-lg-12 d-flex justify-content-end">
+              {% comment %}
+                  <!--Start Single project Item-->
+                  <div class="single-project-item">
+                      <div class="img-holder">
+                          <div class="inner">
+                              <img src="{% static 'Client_assets/images/portfolio/project-v1-4.jpg' %}" alt="Awesome Image">
+                              <div class="zoom-button">
+                                  <a class="lightbox-image" data-fancybox="gallery"
+                                      href="{% static 'Client_assets/images/portfolio/project-v1-4.jpg' %}">
+                                      <i class="flaticon-plus"></i>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="text-holder">
+                          <h4><a href="#">Classic Brick Building</a></h4>
+                          <div class="category">
+                              <div class="border-box"></div>
+                              <p>For Rent</p>
+                          </div>
+                      </div>
+                  </div>
+                  <!--End Single project Item--> {% endcomment %}
+                   
+                  <div class="project-style1_button">
+                  
+                      <a class="btn-one style2" href="/Events">
+                          <span class="txt">View All Events </span>
+                      </a>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </section>
+  <!--Start Choose Style1 Area-->
+  <section class="choose-style1-area">
+    <div class="thm-shape-bg1" style="background-image: url({% static 'Client_assets/images/shape/thm-shape-bg1.jpg' %});"></div>
+    <div class="shape1" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="50">
+        <img class="float-bob" src="{% static 'Client_assets/images/shape/key.png' %}" alt="">
+    </div>
+    <div class="container">
+        <div class="row text-right-rtl">
+            <div class="col-xl-6 col-lg-6">
+                <div class="choose-style1__title">
+                    <div class="sec-title">
+                        <div class="sub-title">
+                            <p>Why Choose</p>
+                        </div>
+                        <h2>Why Our Customer<br> Choose This Society?</h2>
+                    </div>
+                    <div class="inner-text">
+                        {% comment %} <p>Amet consectetur adipicing elit do.</p> {% endcomment %}
+                        <div class="btns-box">
+                            <a class="btn-one style2" href="/Contact">
+                                <span class="txt">Inquiry</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-6">
+                <div class="choose-style__content">
+                    <div class="shape2 wow slideInRight">
+                        <img src="{% static 'Client_assets/images/shape/hand-3.png' %}" alt="">
+                    </div>
+                    <ul>
+                        <li class="wow slideInLeft" data-wow-delay="100ms" data-wow-duration="1500ms">
+                            <div class="inner">
+                                <div class="icon">
+                                    <img src="{% static 'Client_assets/images/icon/choose/choose-1.png' %}" alt="">
+                                </div>
+                                <div class="text">
+                                    <h3>Quality Products</h3>
+                                    <p> This section is about improving the quality of housing. That means making sure that everyone can find safe, decent, affordable housing within reach of where they work, shop, study, and play. </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="wow slideInLeft" data-wow-delay="200ms" data-wow-duration="1500ms">
+                            <div class="inner">
+                                <div class="icon">
+                                    <img src="{% static 'Client_assets/images/icon/choose/choose-2.png' %}" alt="">
+                                </div>
+                                <div class="text">
+                                    <h3>Professional Services</h3>
+                                    <p>We are providing professional services to manage its routine without any hassles. Which is accurate, timely and cost-effective.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="wow slideInLeft" data-wow-delay="30ms" data-wow-duration="1500ms">
+                            <div class="inner">
+                                <div class="icon">
+                                    <img src="{% static 'Client_assets/images/icon/choose/choose-3.png' %}" alt="">
+                                </div>
+                                <div class="text">
+                                    <h3>Absolute Security</h3>
+                                    <p>Nowadays, we hear a lot about robbery and other security issues in households. So We Provides Absolute Security TO Protect Members In The Society. </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--End Choose Style1 Area-->
+
+
+<!--Start Service Style1 Area-->
+<section class="service-style1-area">
+    <div class="round-shape wow slideInLeft" data-wow-delay="100ms" data-wow-duration="50ms">
+        <img class="zoom-fade" src="{% static 'Client_assets/images/shape/shape-round.png' %}" alt="">
+    </div>
+    <div class="container">
+        <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>What We Do</p>
+            </div>
+            <h2>We Provide Houses</h2>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <!--Start Single Service Style1-->
+            <div class="col-xl-3 col-lg-6 wow fadeInUp" data-wow-delay="500ms" data-wow-duration="50ms">
+                <div class="single-service-style1 text-center">
+                    <div class="icon-holder">
+                        <img src="{% static 'Client_assets/images/icon/services/service-v1-1.png' %}" alt="">
+                    </div>
+                    <div class="title-holder">
+                        <h3><a href="#">For Sale</a></h3>
+                        <div class="inner-text">
+                            <p>We Provide The Best Interior Rooms To Our Happy Customers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Single Service Style1-->
+            <!--Start Single Service Style1-->
+            <div class="col-xl-3 col-lg-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="50ms">
+                <div class="single-service-style1 text-center">
+                    <div class="icon-holder">
+                        <img src="{% static 'Client_assets/images/icon/services/service-v1-1.png' %}" alt="">
+                    </div>
+                    <div class="title-holder">
+                        <h3><a href="#">Residential</a></h3>
+                        <div class="inner-text">
+                            <p>Members and residents are required to keep their flats/homes clean.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Single Service Style1-->
+            <!--Start Single Service Style1-->
+            <div class="col-xl-3 col-lg-6 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="150ms">
+                <div class="single-service-style1 text-center">
+                    <div class="icon-holder">
+                        <img src="{% static 'Client_assets/images/icon/services/service-v1-4.png' %}" alt="">
+                    </div>
+                    <div class="title-holder">
+                        <h3><a href="#">For Rent</a></h3>
+                        <div class="inner-text">
+                            <p>We Provides Best Interior Room And Giving Rooms At Rent To Our Customers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Single Service Style1-->
+
+        </div>
+    </div>
+</section>
+<!--End Service Style1 Area-->
+
+    {% endblock ContentPage %} 
+    {% block JavaScriptContent %}{% endblock JavaScriptContent %}
+  </body>
+</html>

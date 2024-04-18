@@ -1,0 +1,22 @@
+{% extends 'Admin/index.html' %}
+{% load static %}
+<html>
+    <head>
+        <title></title>
+        {% block HeadContent %}{% endblock HeadContent %}
+    </head>
+    <body>
+        {% block ContentPage %}
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        </div>
+        <br><br><br><br><br><br>
+        <div class="row d-flex justify-content-center">
+
+        <h1 style="color:black;" >Welcome To Dashboard.</h1>
+        <br><br><br><br><br><br>
+        </div>
+        {% endblock ContentPage %}
+        {% block JavaScriptContent %}{% endblock JavaScriptContent %}
+    </body>
+</html>

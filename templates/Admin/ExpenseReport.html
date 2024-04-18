@@ -1,0 +1,78 @@
+{% extends 'admin/index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% block HeadContent %}{% endblock HeadContent %}
+</head>
+  <body>
+    {% block ContentPage %}
+        <div class="d-flex justify-content-between align-items-center">
+          <h4 class="fw-bold py-3 mb-2"><span class="text-muted fw-light">Expense Report :</h4>
+      </div>
+      
+    <form action="/admin/Report/Date/List/Single" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="card mb-3">
+            <div class="card-header">
+                Date Report
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Form Date</label>
+                    <input value="{{StartDate}}" type="date" id="StartDate" name="StartDate" class="form-control">
+                </div> 
+                <div class="mb-3">
+                    <label class="form-label">To Date</label>
+                    <input value="{{EndDate}}" type="date" id="EndDate" name="EndDate" class="form-control">
+                </div>
+            </div>
+            <div class="card-footer text-center pt-1 pt-3 ">
+                <button type="submit" class="btn btn-primary" id="btn1" name="btn1">Search</button>
+            </div>     
+        </div>
+        <div class="card mb-3">
+          <div class="card-header">
+            Date Wise Report
+          </div>
+          <div class="card-body">
+            <table class="table table-borderd table-hover"  >
+              <thead>
+                <tr>
+                  <th scope="col" width="540">Id</th>
+                  <th scope="col" width="540">Type</th>
+                  <th scope="col" width="540">Income Expance Type Id</th>
+                  <th scope="col" width="540">Income Expance From Id</th>
+                  <th scope="col" width="540">Income Expance Amount</th>
+                  <th scope="col" width="540">Payment Type</th>
+                  <th scope="col" width="540">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+               {% for item in List %}
+                <tr >
+                        <td>{{forloop.counter}}</td>
+                        <td>{{item.1}}</td>
+                        <td>{{item.8}}</td>
+                        <td>{{item.3}}</td>
+                        <td>{{item.4}}</td>
+                        <td>{{item.5}}</td>
+                        <td>{{item.7}}</td>
+
+                </tr>
+               {% endfor %}
+               
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </form>
+      {% endblock ContentPage %}
+    {% block JavaScriptContent %}{% endblock JavaScriptContent %}
+  </body>
+</html>

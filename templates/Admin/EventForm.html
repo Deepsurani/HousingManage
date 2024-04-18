@@ -1,0 +1,95 @@
+{% extends 'admin/index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block Title %}
+    Event Form
+    {% endblock Title %}
+    {% block ContentPage %}
+     <!-- Begin Page Content -->
+      <!-- Page Heading -->
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Event Form</h1>
+        <a href="/admin/Event/List/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-angle-left fa-sm text-white-50"></i> Back</a>
+      </div>
+
+      <form action="/admin/Event/Add/" id="formCategory" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if msg != null %}
+        {% if status == 'Success' %}
+          <div class="alert alert-success">
+            {{msg}}
+          </div>
+        {% else %}
+          <div class="alert alert-danger">
+            {{msg}}
+          </div>
+        {% endif %}
+     
+      {% endif %}
+        <div class="card shadow mb-4">
+          <div class="card-header">
+            <h5>Event Form</h5>
+          </div>
+          <div class="card-body">
+          <input type="hidden" name="hidId" id="hidId" value="{% if Data.0 != NULL %}{{Data.0}}{% else %}0{% endif %}">
+
+            <div class="form-group">
+              <b><label>Event Title</label></b>
+              <input value="{{Data.1}}" required pattern="[A-Za-z\s]{1,50}" title="Please Enter Title in Alfabatic Character Between 1 to 50" name="title" type="text" id="title" class="form-control" placeholder="Event Title" autocomplete="off" />
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <b><label>Event Thumbnil</label></b>
+                  <input required name="thumbnil" type="file" accept=".png,.jpg,.jpeg" id="thumbnil" class="form-control" autocomplete="off" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <img src="/{{Data.2}}" height="200px" width="200px" alt="">
+              </div>
+            </div>
+            
+            <div class="form-group">
+                <b><label>Event Date</label></b>
+                <input value="{{Data.3}}" required name="event_date" type="date" id="event_date" class="form-control" autocomplete="off" />
+            </div>
+            <div class="form-group">
+              <b><label>Discription</label></b>
+              <textarea required name="discription" max-length="150" class="form-control" id="discription">{{Data.4}}</textarea>              
+            </div>
+            
+            <div class="form-group">
+                <b><label>Theme</label></b>
+                <input value="{{Data.5}}" required pattern="[A-Za-z\s]{1,50}" title="Please Enter Title in Alfabatic Character Between 1 to 50" name="any_theme" type="text" id="any_theme" class="form-control" autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <b><label>Contribution Amount Per House</label></b>
+                <input value="{{Data.6}}" required name="contribution" type="number" id="contribution" class="form-control" autocomplete="off" />
+            </div>
+            <div class="form-group">
+              <b><label>Status</label></b>
+              <select required aria-required="true" name="status" id="status" class="form-control">
+                <option value="">--Select Status--</option>
+                <option {% if Data.7 == "Active" %}selected="selected"{% endif %} value="Active">Active</option>
+                <option {% if Data.7 == "Deactive" %}selected="selected"{% endif %} value="Deactive">Deactive</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card-footer text-center">
+            <button id="btnSave" name="btnSave" class="btn btn-success" type="submit"><i class="fa fa-save mr-2"></i>&nbsp;{% if Data.0 != 0 and Data.0 != null %}Update{% else %}Save{% endif %}</button>
+            <button id="btnCancle" name="btnCancle" class="btn btn-danger" type="reset"><i class="fa fa-times mr-2"></i>&nbsp;Clear</button>
+          </div>
+        </div>
+      </form>
+    {% endblock ContentPage %}
+</body>
+</html>

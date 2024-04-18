@@ -1,0 +1,107 @@
+{% extends 'admin/index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block Title %}
+    Income Expance
+    {% endblock %}
+    {% block ContentPage %}
+      <!-- Begin Page Content -->
+      <!-- Page Heading -->
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Income Expance</h1>
+        <a href="/admin/IncomeExpanse/List/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-angle-left fa-sm text-white-50"></i> Back</a>
+      </div>
+
+      <form action="/admin/IncomeExpanse/Add/" id="formCategory" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if msg != null %}
+        {% if status == 'Success' %}
+          <div class="alert alert-success">
+            {{msg}}
+          </div>
+        {% else %}
+          <div class="alert alert-danger">
+            {{msg}}
+          </div>
+        {% endif %}
+      {% endif %}
+        <div class="card shadow mb-4">
+          <div class="card-header">
+            <h5> Income Expance Form</h5>
+          </div>
+          <div class="card-body">
+            <input type="hidden" name="hidId" id="hidId" value="{% if Data.0 != NULL %}{{Data.0}}{% else %}0{% endif %}">
+            {% comment %} <div class="form-group">
+                <b><label>Type</label></b>
+                <input value="{{Data.2}}" required pattern="[A-Za-z\s]{1,50}" title="Please Enter House Type Name in Alfabatic Character Between 1 to 50" name="type" type="text" id="type" class="form-control" placeholder="Type" autocomplete="off" />
+            </div> {% endcomment %}
+            <div class="form-group">
+              <b><label>Type</label></b>
+              <select required aria-required="true" name="type" id="type" class="form-control">
+                <option value="">-- Select Type --</option>
+                <option {% if Data.1 == "DEBIT" %}selected="selected"{% endif %} value="DEBIT">DEBIT</option>
+                <option {% if Data.1 == "CREDIT" %}selected="selected"{% endif %} value="CREDIT">CREDIT</option>
+              </select>
+            </div>
+              <div class="form-group" >
+                <b><label>Income Expense type Id</label></b>
+                {% comment %} <input value="{{Data.3}}" required pattern="[A-Za-z\s]{1,50}" title="Please Enter House Type Name in Alfabatic Character Between 1 to 50" name="income_expance_type_id" type="text" id="income_expance_type_id" class="form-control" placeholder="Income Expanse type Id" autocomplete="off" /> {% endcomment %}
+                <select dissable class="form-control" name="income_expance_type_id" id="income_expance_type_id" >
+                  <option value="">--- Income Expense type Id ---</option>
+                  {% for item in List %}
+                  <option {% if Data.1 == item.0 %} selected="selected"{% endif %} value="{{item.0}}"> {{item.1}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <b><label>Income Expence Form</label></b>
+                <input value="{{Data.3}}" required pattern="[A-Za-z\s]{1,50}" title="Please Enter Income Expance Form in Alfabatic Character Between 1 to 50" name="income_expance_from" type="text" id="income_expance_from" class="form-control" placeholder="Income Expance Form" autocomplete="off" />
+              </div>
+             <div class="form-group">
+                <b><label>Income Expence Amount</label></b>
+                <input value="{{Data.4}}" required pattern="[0-9]{1,50}" title="Please Enter 1-9 numaric number" name="income_expance_amount" type="text" id="income_expance_amount" class="form-control" placeholder="Income Expance Amount" autocomplete="off" />
+              </div>
+              <div class="form-group">
+                <b><label>Date</label></b>
+                <input type="date" required class="form-control" id="MessageCdate" name="MessageCdate" value="{{Data.7}}">
+              </div>
+              
+              <div class="form-group">
+                <b><label>Payment Mode</label></b>
+                <select required aria-required="true" name="payment_type" id="payment_type" class="form-control">
+                  <option value="">-- Select Payment Mode --</option>
+                  <option {% if Data.5 == "UPI transaction" %}selected="selected"{% endif %} value="DEBIT">UPI transaction</option>
+                  <option {% if Data.5 == "Cash" %}selected="selected"{% endif %} value="cash">cash</option>
+                  <option {% if Data.5 == "Cheque" %}selected="selected"{% endif %} value="Cheque">Cheque</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <b><label>Remarks</label></b>
+                <textarea name="remarks" id="remarks" class="form-control">{{Data.6}}</textarea>
+              </div>
+              {% comment %} @*<span id="reqStatus" class="mt-2 d-inline-block" style="color:Red;font-size:Large;visibility:hidden;">! Please Select Status</span>*@ {% endcomment %}
+              </div>
+          </div>
+
+          <div class="card-footer text-center">
+            <button class="btn btn-success" type="submit"><i class="fa fa-save mr-2"></i>&nbsp;{% if Data.0 != 0 and Data.0 != null %}Update{% else %}Save{% endif %}</button>
+            <button id="btnCancle" name="btnCancle" class="btn btn-danger" type="reset"><i class="fa fa-times mr-2"></i>&nbsp;Clear</button>
+          </div>
+        </div>
+      </form>
+    {% endblock %}
+
+    {% block Scripts %}
+   
+   
+    {% endblock %}
+</body>
+</html>
